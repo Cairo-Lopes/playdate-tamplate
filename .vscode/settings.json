@@ -1,3 +1,16 @@
 {
-  "playdate.output": "bin/Output.pdx"
+  "playdate.output": "bin/Output.pdx",
+  "Lua.runtime.version": "Lua 5.4",
+  "Lua.diagnostics.disable": [
+    "undefined-global",
+    "lowercase-global",
+    "redefined-local"
+  ],
+  "Lua.diagnostics.globals": ["playdate", "import"],
+  "Lua.runtime.nonstandardSymbol": ["+=", "-=", "*=", "/="],
+  "Lua.workspace.library": [
+  "/Users/cairo-lopes/Developer/PlaydateSDK/CoreLibs"
+  ],
+  "Lua.workspace.preloadFileSize": 1000,
+  "playdate.sdkPath": "/Users/cairo-lopes/Developer/PlaydateSDK"
 }
