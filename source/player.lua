@@ -2,17 +2,20 @@ import "projectile"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
+
 local projectileInstance
-local reload_timer = 500
+
 local shoot_state = true
 
 class('Player').extends(gfx.sprite)
 
-function Player:init( x, y, image )
+function Player:init( x, y, image)
     self:moveTo(x, y)
     self:setImage(image)
     self.moveSpeed = 1
     self.projectileSpeed = 1
+    self.reload_timer = 500
+
 end
 
 function Player:_createShoot(x, y)
@@ -31,27 +34,23 @@ function Player:_reloading()
     local function activate_shoot()
         shoot_state = true
     end
-    pd.timer.performAfterDelay(reload_timer, activate_shoot)
+    pd.timer.performAfterDelay(self.reload_timer, activate_shoot)
+    if self.reload_timer ~= 500 then
+        self.reload_timer = 500
+    end
 end
 function Player:ability()
     local function timerCallback()
         self:_createShoot(self.x, self.y)
     end
-
-    if shoot_state then
-        pd.timer.performAfterDelay(50, timerCallback)
-        pd.timer.performAfterDelay(400, timerCallback)
-        reload_timer = 1500
-        self:_reloading()
-        reload_timer = 500
-    end
+    pd.timer.performAfterDelay(50, timerCallback)
+    pd.timer.performAfterDelay(100, timerCallback)
 end 
 local timer = pd.frameTimer.new(2000, 0, 2000)
 timer:start()
 
 function Player:update()
     Player.super.update(self)
-    pd.timer.updateTimers()
     if pd.buttonJustReleased(pd.kButtonA) then
         self:shoot()
     end

@@ -3,14 +3,13 @@ import "CoreLibs/object"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
 import "CoreLibs/frameTimer"
-import "player"
+import "knight"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
 local function initializer()
-    local knightImage = gfx.image.new("images/knight")
-    local playerInstance = Player(200, 200, knightImage)
+    local playerInstance = Knight(200, 200)
     playerInstance:add()
 end
 initializer()
@@ -18,5 +17,4 @@ initializer()
 function playdate.update()
     gfx.sprite.update()
     pd.timer.updateTimers()
-    gfx.drawText("Hello World", 20, 20)
 end
