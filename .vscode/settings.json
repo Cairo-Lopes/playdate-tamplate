@@ -4,7 +4,10 @@
   "Lua.diagnostics.disable": [
     "undefined-global",
     "lowercase-global",
-    "redefined-local"
+    "redefined-local",
+    "undefined-field",
+    "duplicate-set-field",
+    "need-check-nil"
   ],
   "Lua.diagnostics.globals": ["playdate", "import"],
   "Lua.runtime.nonstandardSymbol": ["+=", "-=", "*=", "/="],
